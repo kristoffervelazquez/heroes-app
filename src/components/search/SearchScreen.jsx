@@ -16,7 +16,7 @@ const SearchScreen = () => {
 
 
     const [formValues, handleInputChange] = useForm({
-        searchText: q
+        searchText: q || ''
     });
 
     const { searchText } = formValues;

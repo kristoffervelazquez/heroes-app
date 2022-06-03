@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../auth/authContext";
 import { types } from "../../types/types";
@@ -8,6 +8,7 @@ import { types } from "../../types/types";
 
 
 const LoginScreen = () => {
+  const [username, setUsername] = useState('')
 
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
@@ -17,13 +18,15 @@ const LoginScreen = () => {
     const action = {
       type: types.login,
       payload: {
-        name: 'Kristoffer'
+        name: username || 'USER'
       }
     }
 
     dispatch(action);
 
-    navigate('/marvel', {
+    const lastPath = localStorage.getItem('lastPath') || '/marvel';
+
+    navigate(lastPath, {
       replace: true
     });
 
@@ -35,8 +38,10 @@ const LoginScreen = () => {
       <h1>LoginScreen</h1>
       <hr />
 
+      <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" className="form-control w-25" />
+
       <button
-        className="btn btn-primary"
+        className="btn btn-primary mt-2"
         onClick={handleLogin}
       >
         Login
