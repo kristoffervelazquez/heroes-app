@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom"
 import { getHeroById } from "../../helpers/getHerobyId"
+import { heroImages } from "../../helpers/heroImages";
+
+
+
 
 const HeroScreen = () => {
 
@@ -8,7 +12,7 @@ const HeroScreen = () => {
     const navigation = useNavigate();
 
 
-    const hero = useMemo(() => getHeroById(id), [id] ) 
+    const hero = useMemo(() => getHeroById(id), [id])
 
     if (!hero) {
         return <Navigate to="/" />
@@ -16,9 +20,9 @@ const HeroScreen = () => {
 
     const { superhero, publisher, alter_ego, first_appearance, characters } = hero;
 
-    const imgPath = `/assets/${hero.id}.jpg`
+    // const imgPath = `/assets/${hero.id}.jpg`
 
-    
+
     const handleReturn = () => {
         navigation(-1)
     }
@@ -26,7 +30,10 @@ const HeroScreen = () => {
     return (
         <div className="row mt-5">
             <div className="col-4">
-                <img src={imgPath} alt={superhero} className="img-thumbnail animate__animated animate__bounceInLeft animate__delay-1s" />
+                <img
+                    // src={imgPath}
+                    src={heroImages(`./${hero.id}.jpg`)}
+                    alt={superhero} className="img-thumbnail animate__animated animate__bounceInLeft animate__delay-1s" />
             </div>
 
             <div className="col-8 animate__animated animate__bounceInDown ">

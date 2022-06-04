@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../auth/authContext";
 import { types } from "../../types/types";
 
-
-
-
-
 const LoginScreen = () => {
   const [username, setUsername] = useState('')
 

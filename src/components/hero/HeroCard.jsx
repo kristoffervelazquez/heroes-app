@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { heroImages } from '../../helpers/heroImages';
+
+
+
 
 const HeroCard = ({
     id,
@@ -9,7 +13,8 @@ const HeroCard = ({
     characters
 }) => {
 
-    const imagePath = `/assets/${id}.jpg`;
+    // const imagePath = `/assets/${id}.jpg`;
+
 
     return (
 
@@ -19,7 +24,7 @@ const HeroCard = ({
 
                 <div className="row no-gutters">
                     <div className="col-4">
-                        <img src={imagePath} alt={superhero} className="card-img" />
+                        <img src={heroImages(`./${id}.jpg`)} alt={superhero} className="card-img" />
                     </div>
                     <div className="col-8">
                         <div className="card-body">
@@ -27,16 +32,16 @@ const HeroCard = ({
                             <p className="card-text">{alter_ego}</p>
 
                             {
-                                (alter_ego !== characters) 
+                                (alter_ego !== characters)
                                 &&
                                 <p className="text-muted">{characters}</p>
                             }
 
                             <p className="card-text">
                                 <small className="text-muted">{first_appearance}</small>
-                                
+
                             </p>
-                            
+
                             <Link to={`/hero/${id}`}>Mas información</Link>
                         </div>
 
